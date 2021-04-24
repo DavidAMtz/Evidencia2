@@ -86,3 +86,35 @@ def consulta():
         else:
             fecha=(diaVenta+"/"+mesVenta+"/"+añoVenta)
             print("")
+
+        with open ('ventas.csv') as file:
+            reader=csv.reader(file)
+            for registro in reader:
+                clave1=clave1+1
+                if registro[-1]==fecha:
+                    
+                    descArticulo2.append(registro[0])
+                    cantVendidas2.append(registro[1])
+                    precioVenta2.append(registro[2])
+                    tiempoVenta2.append(registro[3])
+                                                        
+                    clave=clave+1
+                        
+                elif registro[-1]!=fecha:
+                    clave2=clave2+1
+                    
+            if clave2==clave1:
+                print(f"No se tiene registro con esta fecha:( {fecha} ")
+                
+        try:
+            dic3["Descripcion_del_Articulo"]=descArticulo2
+            dic3["Cantidad_Vendido"]=cantVendidas2
+            dic3["Precio_de_Venta"]=precioVenta2
+            dic3["Tiempo_Compra"]=tiempoVenta2
+            dataframe=pd.DataFrame(dic3)
+            print(dataframe)
+        except:
+            print("No esta registrado")
+
+    except:
+        print("No esta registrado")
