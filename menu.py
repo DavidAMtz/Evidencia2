@@ -58,3 +58,31 @@ def registroVentas():
         #Aqui cuando el usuario haya terminado de registrar sus ventas, se da el total de todos los articulos.
         if respuesta == 2:
             print(f"***TOTAL DE COMPRA***: {sum(total)}")
+
+def consulta():
+    try:
+        dic3={}
+        descArticulo2=[]
+        cantVendidas2=[]
+        precioVenta2=[]
+        tiempoVenta2=[]
+        clave=1
+        clave1=0
+        clave2=0
+        
+        print("***Consulta de Venta***")
+        
+        #Aqui se le pedira al usuario la fecha de su registro de venta para consulta.
+        diaVenta=input("Dime el dia de la venta: ")
+        mesVenta=input("Dime el mes de la venta: ")
+        añoVenta=input("Dime el año de la venta: ")
+                                                                                
+        if len(mesVenta)==1:
+            mesVenta=("0"+ mesVenta)
+                                                                                    
+        if len(diaVenta)==1:
+            diaVenta2=("0"+diaVenta+"/")
+            fecha=(diaVenta2+mesVenta+"/"+añoVenta)
+        else:
+            fecha=(diaVenta+"/"+mesVenta+"/"+añoVenta)
+            print("")
