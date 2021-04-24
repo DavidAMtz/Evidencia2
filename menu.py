@@ -118,3 +118,20 @@ def consulta():
 
     except:
         print("No esta registrado")
+
+#Aqui se se encuentran las clases con el menu principal.
+while True:
+    print ("********MENÚ********")
+    
+    print ("1-.Registrar una venta\n2-.Consultar venta por fecha\n3-.Salir")
+    
+    opcionInicial = int(input("Ingrese la opción que quiera realizar: "))
+    
+    if opcionInicial == 1:
+        registroVentas()
+    
+    if opcionInicial == 2:
+        consulta()
+    
+    if opcionInicial == 3:
+        break
