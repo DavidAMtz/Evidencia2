@@ -3,7 +3,36 @@ import sys
 import pandas as pd
 import csv
 import os
+import sqlite3
+from sqlite3 import Error
 
+
+def crearTabla():
+    try:
+        with sqlite3.connect("Evidencia.db") as conn:
+            c = conn.cursor()
+            c.execute("CREATE TABLE IF NOT EXISTS cosmetiqueria (clave INTEGER PRIMARY KEY, descripción_Articulo TEXT NOT NULL, cantidad_Vendida INTEGER NOT NULL, precio_Venta BOOLEAN NOT NULL, tiempo_Venta DATETIME NOT NULL);")
+            print("Tabla creada exitosamente\n")
+    except Error as e:
+        print (e)
+    except:
+        print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
+
+def InsertarRegistro():
+    try:
+        with sqlite3.connect("Evidencia.db") as conn:
+            c = conn.cursor()
+            c.execute("INSERT INTO cosmetiqueria VALUES()")
+            print("registro creado exitosamente\n")
+    except Error as e:
+        print (e)
+    except:
+        print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
+    finally:
+        if (conn):
+            conn.close()
+    
+    
 def registroVentas():
     clave=1
     respuesta = 1
@@ -12,6 +41,7 @@ def registroVentas():
     print("***Registro de Venta***")
     
     while respuesta == 1:
+        
         descArticulo=[]
         cantVendidas=[]
         precioVenta=[]
@@ -121,6 +151,9 @@ def consulta():
 
 #Aqui se se encuentran las clases con el menu principal.
 while True:
+    print ("-CREANDO TABLA-")
+    print ("." * 20)
+    crearTabla()
     print ("********MENÚ********")
     
     print ("1-.Registrar una venta\n2-.Consultar venta por fecha\n3-.Salir")
@@ -129,6 +162,7 @@ while True:
     
     if opcionInicial == 1:
         registroVentas()
+        InsertarRegistro()
     
     if opcionInicial == 2:
         consulta()
